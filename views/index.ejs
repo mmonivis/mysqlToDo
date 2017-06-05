@@ -13,6 +13,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 text-center">
+			<h3><%= message %></h3>
 			<h1>Your ToDo List...</h1>
 			<form class="form-inline" action="/addItem" method="post">
 				<div class="form-group">
@@ -37,12 +38,14 @@
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
+			<% for (let i = 0; i < taskArray.length; i++){ %>
 				<tr>
-					<td>-</td>
-					<td>-</td>
+					<td><%= taskArray[i].taskName %></td>
+					<td><%= taskArray[i].taskDate %></td>
 					<td><button class="btn btn-warning">Edit</button></td>
-					<td><button class="btn btn-danger">Delete</button></td>
+					<td><a href="/delete/<%= taskArray[i].id %>"><button class="btn btn-danger">Delete</button></a></td>
 				</tr>
+			<% } %>
 			</table>
 		</div>
 	</div>
