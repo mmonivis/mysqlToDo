@@ -2,10 +2,51 @@
 <html>
 <head>
 	<title></title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
 </head>
 <body>
 
-	<h1>Sanity Check</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<h1>Your ToDo List...</h1>
+			<form class="form-inline" action="/addItem" method="post">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="New Task" name="newTask" />
+					</div>
+					<div class="input-group">
+						<input type="date" class="form-control" name="newTaskDate" />
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Add New Task</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table">
+				<tr>
+					<th>Task Name</th>
+					<th>Task Due Date</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<tr>
+					<td>-</td>
+					<td>-</td>
+					<td><button class="btn btn-warning">Edit</button></td>
+					<td><button class="btn btn-danger">Delete</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>
