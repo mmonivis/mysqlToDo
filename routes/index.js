@@ -22,6 +22,10 @@ router.get('/', function(req, res, next) {
 	var message = req.query.msg;
 	if(message == "added"){
 		message = "Your task was added!";
+	}else if(message == "updated"){
+		message = "Your task was updated!";
+	}else if(message == "deleted"){
+		message = "Your task was deleted!";
 	}
 	var selectQuery = "SELECT * FROM tasks";
 	connection.query(selectQuery,(error,results)=>{
@@ -54,6 +58,27 @@ router.get('/delete/:id',(req,res)=>{
 		res.redirect('/?msg=deleted');
 	})
 	// res.send(idToDelete);
+});
+
+// Make a new route to handle the edit page. It will be /edit/IDTOEDIT
+router.get('/edit/:id',(req,res)=>{
+	var idToEdit = req.params.id;
+	var selectQuery = "SELECT * FROM tasks WHERE id = ?";
+	connection.query(selectQuery, [idToEdit], (error, results)=>{
+		res.render('edit',{
+			task: results[0]
+		});
+	});
+});
+
+router.post('/editItem',(req,res)=>{
+	var newTask = req.body.newTask;
+	var newTaskDate = req.body.newTaskDate;
+	var idToEdit = req.query.id;
+	var updateQuery = "UPDATE tasks SET taskName = ?, taskDate = ? WHERE id = ?";
+	connection.query(updateQuery, [newTask,newTaskDate,idToEdit], (error,results)=>{
+		res.redirect('/?msg=updated');
+	});
 });
 
 module.exports = router;
