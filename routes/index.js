@@ -77,6 +77,9 @@ router.post('/editItem',(req,res)=>{
 	var idToEdit = req.query.id;
 	var updateQuery = "UPDATE tasks SET taskName = ?, taskDate = ? WHERE id = ?";
 	connection.query(updateQuery, [newTask,newTaskDate,idToEdit], (error,results)=>{
+		// if error{
+		// 	res.send(error);
+		// }
 		res.redirect('/?msg=updated');
 	});
 });
